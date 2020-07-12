@@ -15,12 +15,16 @@ const reducer = (state = 0, action) => {
 
 const store = createStore(reducer);
 
-document.getElementById('dec').addEventListener('click', () => store.dispatch({ type: 'DEC' }));
+const inc = () => ({ type: 'INC' });
+const dec = () => ({ type: 'DEC' });
+const rnd = (value) => ({ type: 'RND', value });
 
-document.getElementById('inc').addEventListener('click', () => store.dispatch({ type: 'INC' }));
+document.getElementById('inc').addEventListener('click', () => store.dispatch(inc()));
+
+document.getElementById('dec').addEventListener('click', () => store.dispatch(dec()));
 
 document.getElementById('rnd').addEventListener('click', () => {
-    store.dispatch({ type: 'RND', value: Math.floor(Math.random() * 10) });
+    store.dispatch(rnd(Math.floor(Math.random() * 10)));
 });
 
 store.subscribe(() => {
