@@ -1,4 +1,4 @@
-// Simple Reducer example 
+import { createStore } from 'redux';
 
 const reducer = (state = 0, action) => {
     switch (action.type) {
@@ -9,7 +9,6 @@ const reducer = (state = 0, action) => {
     }
 }
 
-let state = reducer(undefined, { type: 'INC' });
-console.log(state);
-state = reducer(state, { type: 'INC' });
-console.log(state);
+const store = createStore(reducer);
+
+console.log(store.getState());
