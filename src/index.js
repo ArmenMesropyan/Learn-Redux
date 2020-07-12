@@ -6,6 +6,8 @@ const reducer = (state = 0, action) => {
             return state + 1;
         case 'DEC':
             return state - 1;
+        case 'RND':
+            return state + action.value;
         default:
             return state;
     }
@@ -13,12 +15,12 @@ const reducer = (state = 0, action) => {
 
 const store = createStore(reducer);
 
-document.getElementById('dec').addEventListener('click', () => {
-    store.dispatch({ type: 'DEC' });
-});
+document.getElementById('dec').addEventListener('click', () => store.dispatch({ type: 'DEC' }));
 
-document.getElementById('inc').addEventListener('click', () => {
-    store.dispatch({ type: 'INC' });
+document.getElementById('inc').addEventListener('click', () => store.dispatch({ type: 'INC' }));
+
+document.getElementById('rnd').addEventListener('click', () => {
+    store.dispatch({ type: 'RND', value: Math.floor(Math.random() * 10) });
 });
 
 store.subscribe(() => {
