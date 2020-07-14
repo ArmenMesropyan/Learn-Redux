@@ -5,9 +5,11 @@ import reducer from './reducer';
 const store = createStore(reducer);
 const { dispatch } = store;
 
-const incDispatch = () => dispatch(inc());
-const decDispatch = () => dispatch(dec());
-const rndDispatch = (value) => dispatch(rnd(value));
+const bindActionCreater = (action, dispatch) => (...args) => dispatch(action(...args));
+
+const incDispatch = bindActionCreater(inc, dispatch);
+const decDispatch = bindActionCreater(dec, dispatch);
+const rndDispatch = bindActionCreater(rnd, dispatch);
 
 document.getElementById('inc').addEventListener('click', incDispatch);
 
